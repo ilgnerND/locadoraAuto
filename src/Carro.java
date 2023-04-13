@@ -3,8 +3,8 @@ class Carro extends Veiculo {
     private boolean arCondicionado;
 
     // Construtor
-    public Carro(String placa, int ano, double valorDiaria, double mediaKmPorLitro, boolean arCondicionado) {
-        super(placa, ano, valorDiaria);
+    public Carro(String placa, int ano, double valorDiaria, boolean locado, double mediaKmPorLitro, boolean arCondicionado) {
+        super(placa, ano, valorDiaria, locado);
         this.mediaKmPorLitro = mediaKmPorLitro;
         this.arCondicionado = arCondicionado;
     }

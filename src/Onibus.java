@@ -4,8 +4,8 @@ class Onibus extends Veiculo {
     private String categoria;
 
     // Construtor
-    public Onibus(String placa, int ano, double valorDiaria, int numeroPassageiros, String categoria) {
-        super(placa, ano, valorDiaria);
+    public Onibus(String placa, int ano, double valorDiaria, boolean locado, int numeroPassageiros, String categoria) {
+        super(placa, ano, valorDiaria, locado);
         this.numeroPassageiros = numeroPassageiros;
         this.categoria = categoria;
     }
