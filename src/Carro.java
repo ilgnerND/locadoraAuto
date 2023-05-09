@@ -1,10 +1,11 @@
-class Carro extends Veiculo {
+
+public class Carro extends Veiculo {
     private double mediaKmPorLitro;
     private boolean arCondicionado;
 
     // Construtor
-    public Carro(String placa, int ano, double valorDiaria, boolean locado, double mediaKmPorLitro, boolean arCondicionado) {
-        super(placa, ano, valorDiaria, locado);
+    public Carro(String placa, int ano, double valorDiaria, double mediaKmPorLitro, boolean arCondicionado) {
+        super(placa, ano, valorDiaria);
         this.mediaKmPorLitro = mediaKmPorLitro;
         this.arCondicionado = arCondicionado;
     }
@@ -27,7 +28,7 @@ class Carro extends Veiculo {
 
     @Override
     public String toString() {
-        return "Carro [mediaKmPorLitro=" + mediaKmPorLitro + ", arCondicionado=" + arCondicionado + "]";
+        return "Carro [placa= " + placa + ", ano= " + ano + ", valorDiaria= " + valorDiaria +" mediaKmPorLitro=" + mediaKmPorLitro + ", arCondicionado=" + arCondicionado + "]";
     }
 
     

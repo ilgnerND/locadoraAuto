@@ -1,61 +1,98 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Locadora {
-    private ArrayList<Veiculo> veiculos; // Altere o tipo de dado para ArrayList<Veiculo>
-    private int numVeiculos;
+public class Locadora implements IVeiculos{
+    private List<Veiculo> veiculos;
 
-    // Construtor
     public Locadora() {
-        veiculos = new ArrayList<Veiculo>(); // Inicialize o ArrayList
-        numVeiculos = 0;
+        veiculos = new ArrayList<>();
     }
 
-    // Métodos para adicionar e listar veículos
-    public void adicionarVeiculo(Veiculo veiculo) {
-        if (numVeiculos < veiculos.size()) {
-            veiculos.add(veiculo); // Utilize o método add() do ArrayList para adicionar um veículo
-            numVeiculos++;
-            System.out.println("Veículo adicionado: " + veiculo.toString());
-        } else {
-            System.out.println("Não é possível adicionar mais veículos. Capacidade máxima alcançada.");
-        }
+    @Override
+    public void add(Veiculo v) {
+        veiculos.add(v);
     }
 
-    public void listarVeiculos() {
-        System.out.println("Veículos disponíveis na locadora:");
-        for (Veiculo veiculo : veiculos) { // Utilize um loop foreach para percorrer o ArrayList
-            System.out.println(veiculo.toString());
-        }
-    }
-
-    // Métodos para locar e devolver veículos
-    public void locarVeiculo(String placa) {
-        for (Veiculo veiculo : veiculos) { // Utilize um loop foreach para percorrer o ArrayList
-            if (veiculo.getPlaca().equals(placa)) {
-                if (!veiculo.isLocado()) {
-                    veiculo.setLocado(true);
-                    System.out.println("Veículo com placa " + placa + " foi locado.");
-                } else {
-                    System.out.println("Veículo com placa " + placa + " já está locado.");
-                }
-                return;
+    @Override
+    public Veiculo get(String placa) {
+        for (Veiculo v : veiculos) {
+            if (v.getPlaca().equals(placa)) {
+                return v;
             }
         }
-        System.out.println("Veículo com placa " + placa + " não encontrado na locadora.");
+        return null;
     }
 
-    public void devolverVeiculo(String placa) {
-        for (Veiculo veiculo : veiculos) { // Utilize um loop foreach para percorrer o ArrayList
-            if (veiculo.getPlaca().equals(placa)) {
-                if (veiculo.isLocado()) {
-                    veiculo.setLocado(false);
-                    System.out.println("Veículo com placa " + placa + " foi devolvido.");
-                } else {
-                    System.out.println("Veículo com placa " + placa + " não está locado.");
-                }
-                return;
+    @Override
+    public String getInfo(String placa) {
+        Veiculo v = get(placa);
+        if (v != null) {
+            return v.toString();
+        }
+        return null;
+    }
+
+    @Override
+    public String getInfo() {
+        if (veiculos.isEmpty()) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Veiculo v : veiculos) {
+            sb.append(v.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String getResumoInfo() {
+        if (veiculos.isEmpty()) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Veiculo v : veiculos) {
+            sb.append(v.getPlaca());
+            sb.append(", ");
+            sb.append(v.getAno());
+            sb.append(", ");
+            sb.append(v.getValorDiaria());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public boolean set(String placa, Veiculo v) {
+        for (int i = 0; i < veiculos.size(); i++) {
+            Veiculo current = veiculos.get(i);
+            if (current.getPlaca().equals(placa)) {
+                veiculos.set(i, v);
+                return true;
             }
         }
-        System.out.println("Veículo com placa " + placa + " não encontrado na locadora.");
+        return false;
+    }
+
+    @Override
+    public boolean remove(String placa) {
+        for (int i = 0; i < veiculos.size(); i++) {
+            Veiculo current = veiculos.get(i);
+            if (current.getPlaca().equals(placa)) {
+                veiculos.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean existe(String placa) {
+        for (Veiculo v : veiculos) {
+            if (v.getPlaca().equals(placa)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

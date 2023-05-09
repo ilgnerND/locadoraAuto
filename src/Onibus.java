@@ -1,11 +1,12 @@
+
 // Classe Onibus que herda de Veiculo
-class Onibus extends Veiculo {
+public class Onibus extends Veiculo {
     private int numeroPassageiros;
     private String categoria;
 
     // Construtor
-    public Onibus(String placa, int ano, double valorDiaria, boolean locado, int numeroPassageiros, String categoria) {
-        super(placa, ano, valorDiaria, locado);
+    public Onibus(String placa, int ano, double valorDiaria, int numeroPassageiros, String categoria) {
+        super(placa, ano, valorDiaria);
         this.numeroPassageiros = numeroPassageiros;
         this.categoria = categoria;
     }
@@ -28,9 +29,7 @@ class Onibus extends Veiculo {
 
     @Override
     public String toString() {
-        return "Onibus [numeroPassageiros=" + numeroPassageiros + ", categoria=" + categoria + "]";
-    }
-
-    
+        return "Onibus [placa= " + placa + ", ano= " + ano + ", valorDiaria= " + valorDiaria +" numeroPassageiros=" + numeroPassageiros + ", categoria=" + categoria + "]";
+    }  
 
 }

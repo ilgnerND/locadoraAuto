@@ -1,13 +1,14 @@
 
+
 /**
  * Classe base Veiculo.
  * @author Ilgner
  */
-abstract class Veiculo {
+public abstract class Veiculo {
     protected String placa;
     protected int ano;
     protected double valorDiaria;
-    protected boolean locado; // Indica se o veículo está locado ou não
+    
 
 
     // Construtor
@@ -15,13 +16,13 @@ abstract class Veiculo {
      * @param placa
      * @param ano
      * @param valorDiaria
-     * @param locado
+   
      */
-    public Veiculo(String placa, int ano, double valorDiaria, boolean locado) {
+    public Veiculo(String placa, int ano, double valorDiaria) {
         this.placa = placa;
         this.ano = ano;
         this.valorDiaria = valorDiaria;
-        this.locado = locado;
+        
 
     }
 
@@ -52,17 +53,13 @@ abstract class Veiculo {
         this.valorDiaria = valorDiaria;
     }
 
-    public boolean isLocado() {
-        return locado;
-    }
+   
 
-    public void setLocado(boolean locado) {
-        this.locado = locado;
-    }
+
 
     @Override
     public String toString() {
-        return "Veiculo [placa= " + placa + ", ano= " + ano + ", valorDiaria= " + valorDiaria + "locado= "+ locado +"]";
+        return "Veiculo [placa= " + placa + ", ano= " + ano + ", valorDiaria= " + valorDiaria +"]";
     }
 
     

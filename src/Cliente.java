@@ -1,18 +1,20 @@
+
 public class Cliente {
     private String nome;
-    private String cpf;
+    private long cpf;
     private String numCarteiraMotorista;
     private String endereco;
     private String telefone;
 
-    // Construtor
-    public Cliente(String nome, String cpf, String numCarteiraMotorista, String endereco, String telefone) {
+    public Cliente(String nome, long cpf, String numCarteiraMotorista, String endereco, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.numCarteiraMotorista = numCarteiraMotorista;
         this.endereco = endereco;
         this.telefone = telefone;
     }
+
+    //getters e setters
 
     public String getNome() {
         return nome;
@@ -22,11 +24,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -53,6 +55,7 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
 
     @Override
     public String toString() {

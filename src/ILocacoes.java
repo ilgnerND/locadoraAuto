@@ -1,3 +1,4 @@
+
 /**
  * Interface que permite manipular um conjunto de locações.
  * @author Ilgner
@@ -7,7 +8,7 @@ public interface ILocacoes {
      * Adiciona uma locação na relação de locações.
      * @param l Locação a ser inserido.
      */
-    public void add(Locadora l);
+    public void add(Locacao l);
     
     /**
      * Captura a locação com o codigo informado por parâmetro.
@@ -16,7 +17,7 @@ public interface ILocacoes {
      */
         
 
-    public Locadora get(int codigo);
+    public Locacao get(int codigo);
     
     /**
      * Captura uma String com as informaçoes da locação com o codigo informado por parâmetro.
@@ -40,7 +41,7 @@ public interface ILocacoes {
      * @return True se a locação com o codigo informado por parâmetro foi modificada ou
      * false caso não exista nenhuma locação com o codigo informado.
      */
-    public boolean set(int codigo, Locadora l);
+    public boolean set(int codigo, Locacao l);
     
     /**
      * Remove a locação com o codigo igual ao informado por parâmetro.
