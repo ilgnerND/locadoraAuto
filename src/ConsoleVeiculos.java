@@ -9,12 +9,16 @@ import model.Veiculo;
  * Possui métodos para incluir, alterar, capturar e listar veículos.
  */
 public class ConsoleVeiculos {
-    private static Veiculos locadora = new Veiculos();
-    private static Scanner scanner = new Scanner(System.in);
-	/**
+    private  IVeiculos veiculos;
+    private  Scanner scanner = new Scanner(System.in);
+	 public ConsoleVeiculos(IVeiculos veiculos){
+           this.veiculos =  veiculos;
+     }
+    
+    /**
      * Exibe o menu de opções para o sistema de cadastro de veículos e aguarda a entrada do usuário para realizar as operações.
      */
-    public static  void exibeMenuVeiculos() {
+    public   void exibeMenuVeiculos() {
         int opcao = 0;
 
         do {
@@ -42,7 +46,7 @@ public class ConsoleVeiculos {
                     listarVeiculos();
                     break;
                 case 0:
-                    LocadoraVeiculosConsole.exibirMenuLocadoraVeic();
+                    //LocadoraVeiculosConsole.exibirMenuLocadoraVeic();
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -54,7 +58,7 @@ public class ConsoleVeiculos {
      * Realiza a inclusão de um veículo no sistema, solicitando ao usuário as informações necessárias.
      * Após a inclusão, adiciona o veículo à lista de veículos da locadora.
      */
-    private static void incluirVeiculo() {
+    private  void incluirVeiculo() {
         System.out.println("Inclusão de Veículo");
 
         // Solicita informações do veículo ao usuário
@@ -98,7 +102,7 @@ public class ConsoleVeiculos {
         }
 
         // Adiciona o veículo à lista de veículos da locadora e exibe uma mensagem de sucesso.
-        locadora.add(veiculo);
+        veiculos.add(veiculo);
         System.out.println("Veículo incluído com sucesso!");
     }    
     /**
@@ -106,7 +110,7 @@ public class ConsoleVeiculos {
  * e as novas informações do veículo.
  * Verifica se o veículo existe na locadora e, caso exista, realiza a alteração e exibe uma mensagem de sucesso.
  */
-private static void alterarVeiculo() {
+private  void alterarVeiculo() {
     System.out.println("Alteração de Veículo");
 
     // Solicita a placa do veículo a ser alterado
@@ -114,12 +118,12 @@ private static void alterarVeiculo() {
     String placa = scanner.next();
 
     // Verifica se o veículo existe
-    if (!locadora.existe(placa)) {
+    if (!veiculos.existe(placa)) {
         System.out.println("Veículo não encontrado!");
         return;
     }
 
-    Veiculo veiculo = locadora.get(placa);
+    Veiculo veiculo = veiculos.get(placa);
 
     // Solicita as novas informações do veículo
     System.out.print("Ano (" + veiculo.getAno() + "): ");
@@ -153,7 +157,7 @@ private static void alterarVeiculo() {
     }
 
     // Realiza a alteração do veículo na locadora
-    boolean alterado = locadora.set(placa, veiculo);
+    boolean alterado = veiculos.set(placa, veiculo);
     if (alterado) {
         System.out.println("Veículo alterado com sucesso!");
     } else {
@@ -164,7 +168,7 @@ private static void alterarVeiculo() {
 /**
  * Captura e exibe as informações de um ou mais veículos, informados pelo usuário através de suas placas.
  */
-    private static void capturarVeiculos() {
+    private  void capturarVeiculos() {
         System.out.println("Captura de Veículos");
     
         System.out.print("Placas (separadas por vírgula): ");
@@ -172,8 +176,8 @@ private static void alterarVeiculo() {
         String[] placas = placasStr.split(",");
     
         for (String placa : placas) {
-            if (locadora.existe(placa)) {
-                System.out.println(locadora.getInfo(placa));
+            if (veiculos.existe(placa)) {
+                System.out.println(veiculos.getInfo(placa));
             } else {
                 System.out.println("Veículo com placa " + placa + " não encontrado.");
             }
@@ -182,10 +186,10 @@ private static void alterarVeiculo() {
     /**
  * Lista todos os veículos cadastrados na locadora.
  */
-    private static void listarVeiculos() {
+    private  void listarVeiculos() {
         System.out.println("Lista de Veículos");
     // Obtém as informações dos veículos da locadora
-    String info = locadora.getInfo();
+    String info = veiculos.getInfo();
 
     // Verifica se há veículos cadastrados
         if (info != null) {

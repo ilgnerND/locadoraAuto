@@ -5,9 +5,13 @@ import model.Cliente;
 
 public class ConsoleClientes {
      static Scanner scanner = new Scanner(System.in);
-     static  IClientes gerenciadorClientes = new GerenciadorClientes();
+     static  IClientes gerenciadorClientes;
 
-    public static void exibeMenuCliente() {
+    public ConsoleClientes(IClientes gerenciadorClientes){
+        this.gerenciadorClientes = gerenciadorClientes;
+    }
+
+    public  void exibeMenuCliente() {
         int opcao = 0;
 
         while (opcao != 4) {
@@ -15,7 +19,7 @@ public class ConsoleClientes {
             System.out.println("1 - Incluir cliente");
             System.out.println("2 - Alterar cliente");
             System.out.println("3 - Consultar cliente");
-            System.out.println("0 - Voltar menu anterior");
+            System.out.println("4 - Voltar menu anterior");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
 
@@ -30,7 +34,6 @@ public class ConsoleClientes {
                     consultarCliente();
                     break;
                 case 4:
-                    LocadoraVeiculosConsole.exibirMenuLocadoraVeic();
                     break;
                 default:
                     System.out.println("Opção inválida!");

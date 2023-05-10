@@ -11,11 +11,11 @@ import model.Locacao;
 import model.Veiculo;
 
 public class ConsoleLocacoes {
-    private GerenciadorClientes gerenciadorClientes;
+    private IClientes gerenciadorClientes;
     private IVeiculos veiculos;
     private List<Locacao> locacoes;
 
-    public ConsoleLocacoes(GerenciadorClientes gerenciadorClientes, IVeiculos veiculos) {
+    public ConsoleLocacoes(IClientes gerenciadorClientes, IVeiculos veiculos) {
         this.gerenciadorClientes = gerenciadorClientes;
         this.veiculos = veiculos;
         this.locacoes = new ArrayList<>();

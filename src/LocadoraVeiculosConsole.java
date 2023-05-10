@@ -2,10 +2,15 @@
 import java.util.Scanner;
 
 public class LocadoraVeiculosConsole {
-    static ConsoleLocacoes locacoes;
+    Veiculos veiculos = new Veiculos();
+    GerenciadorClientes clientes = new GerenciadorClientes(); 
+    Locacoes locacoes = new Locacoes();
+    ConsoleVeiculos consoleVeiculos = new ConsoleVeiculos(veiculos);
+    ConsoleClientes consoleClientes = new ConsoleClientes(clientes);
+    ConsoleLocacoes consoleLocacoes = new ConsoleLocacoes(clientes, veiculos);
     
 
-    public static void exibirMenuLocadoraVeic() {
+    public void exibirMenuLocadoraVeic() {
         Scanner scan = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
@@ -20,13 +25,13 @@ public class LocadoraVeiculosConsole {
 
             switch (opcao) {
                 case 1:
-                    ConsoleVeiculos.exibeMenuVeiculos();
+                    consoleVeiculos.exibeMenuVeiculos();
                     break;
                 case 2:
-                    ConsoleClientes.exibeMenuCliente();
+                    consoleClientes.exibeMenuCliente();
                     break;
                 case 3:
-                    locacoes.exibeMenuLocacoes();
+                    consoleLocacoes.exibeMenuLocacoes();
                     break;
                 case 0:
                     System.out.println("Saindo...");
