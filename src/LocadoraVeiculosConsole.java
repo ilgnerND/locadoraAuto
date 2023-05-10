@@ -1,20 +1,15 @@
 import java.util.Scanner;
 
 public class LocadoraVeiculosConsole {
-    ConsoleCliente conCliente;
-    ConsoleLocadora conLocadora;
-    LocacoesConsole conLocacoes;
+    static ConsoleLocacoes locacoes;
     
 
-   
-
-
-    public void exibirMenuLocadoraVeic() {
+    public static void exibirMenuLocadoraVeic() {
         Scanner scan = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
             System.out.println("=== MENU PRINCIPAL ===");
-            System.out.println("1. Locadora");
+            System.out.println("1. Veiculos");
             System.out.println("2. Clientes");
             System.out.println("3. Locação");
             System.out.println("0. Sair");
@@ -24,13 +19,13 @@ public class LocadoraVeiculosConsole {
 
             switch (opcao) {
                 case 1:
-                    conLocadora.exibirMenuPrincipal();
+                    ConsoleVeiculos.exibeMenuVeiculos();
                     break;
                 case 2:
-                    conCliente.exibirMenuPrincipal();
+                    ConsoleClientes.exibeMenuCliente();
                     break;
                 case 3:
-                    conLocacoes.exibirMenuPrincipal();
+                    locacoes.exibeMenuLocacoes();
                     break;
                 case 0:
                     System.out.println("Saindo...");

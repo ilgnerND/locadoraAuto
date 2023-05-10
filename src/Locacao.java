@@ -2,7 +2,6 @@
 import java.time.LocalDate;
 
 public class Locacao {
-    
     private int codigo;
     private Cliente cliente;
     private Veiculo veiculo;
@@ -21,36 +20,24 @@ public class Locacao {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public Cliente getCliente() {
         return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Veiculo getVeiculo() {
         return veiculo;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
-
     public LocalDate getDataInicial() {
         return dataInicial;
     }
 
-    public void setDataInicial(LocalDate dataInicial) {
-        this.dataInicial = dataInicial;
-    }
-
     public LocalDate getDataFinal() {
         return dataFinal;
+    }
+
+    public void setDataInicial(LocalDate dataInicial) {
+        this.dataInicial = dataInicial;
     }
 
     public void setDataFinal(LocalDate dataFinal) {
@@ -59,7 +46,7 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return "Locação [Código: " + codigo + ", Cliente: " + cliente.getNome() + ", Veículo: " + veiculo.getPlaca()
-                + ", Data Inicial: " + dataInicial + ", Data Final: " + dataFinal + "]";
+        return "Locacao [codigo=" + codigo + ", cliente=" + cliente + ", veiculo=" + veiculo + ", dataInicial="
+                + dataInicial + ", dataFinal=" + dataFinal + "]";
     }
 }

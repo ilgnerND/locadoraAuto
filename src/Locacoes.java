@@ -1,22 +1,21 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Locacoes implements ILocacoes {
-
-    private List<Locacao> locacoes;
-
+    
+    private ArrayList<Locacao> listaLocacoes;
+    
     public Locacoes() {
-        locacoes = new ArrayList<>();
+        listaLocacoes = new ArrayList<>();
     }
-
+    
     @Override
     public void add(Locacao l) {
-        locacoes.add(l);
+        listaLocacoes.add(l);
     }
 
     @Override
     public Locacao get(int codigo) {
-        for (Locacao l : locacoes) {
+        for (Locacao l : listaLocacoes) {
             if (l.getCodigo() == codigo) {
                 return l;
             }
@@ -26,30 +25,31 @@ public class Locacoes implements ILocacoes {
 
     @Override
     public String getInfo(int codigo) {
-        Locacao l = get(codigo);
-        if (l != null) {
-            return l.toString();
+        for (Locacao l : listaLocacoes) {
+            if (l.getCodigo() == codigo) {
+                return l.toString();
+            }
         }
         return null;
     }
 
     @Override
     public String getInfo() {
-        if (locacoes.isEmpty()) {
+        if (listaLocacoes.isEmpty()) {
             return null;
         }
-        StringBuilder sb = new StringBuilder();
-        for (Locacao l : locacoes) {
-            sb.append(l.toString()).append("\n");
+        String info = "";
+        for (Locacao l : listaLocacoes) {
+            info += l.toString() + "\n";
         }
-        return sb.toString();
+        return info;
     }
 
     @Override
     public boolean set(int codigo, Locacao l) {
-        for (int i = 0; i < locacoes.size(); i++) {
-            if (locacoes.get(i).getCodigo() == codigo) {
-                locacoes.set(i, l);
+        for (int i = 0; i < listaLocacoes.size(); i++) {
+            if (listaLocacoes.get(i).getCodigo() == codigo) {
+                listaLocacoes.set(i, l);
                 return true;
             }
         }
@@ -58,9 +58,9 @@ public class Locacoes implements ILocacoes {
 
     @Override
     public boolean remove(int codigo) {
-        for (Locacao l : locacoes) {
+        for (Locacao l : listaLocacoes) {
             if (l.getCodigo() == codigo) {
-                locacoes.remove(l);
+                listaLocacoes.remove(l);
                 return true;
             }
         }
@@ -69,7 +69,7 @@ public class Locacoes implements ILocacoes {
 
     @Override
     public boolean existe(int codigo) {
-        for (Locacao l : locacoes) {
+        for (Locacao l : listaLocacoes) {
             if (l.getCodigo() == codigo) {
                 return true;
             }
@@ -77,4 +77,3 @@ public class Locacoes implements ILocacoes {
         return false;
     }
 }
-
