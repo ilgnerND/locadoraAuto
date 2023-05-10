@@ -1,8 +1,11 @@
+
 import java.util.Scanner;
+
+import model.Cliente;
 
 public class ConsoleClientes {
      static Scanner scanner = new Scanner(System.in);
-    private static final IClientes gerenciadorClientes = new GerenciadorClientes();
+     static  IClientes gerenciadorClientes = new GerenciadorClientes();
 
     public static void exibeMenuCliente() {
         int opcao = 0;

@@ -3,6 +3,7 @@
  * Interface que permite manipular um conjunto de locações.
  * @author Ilgner
  */
+import model.Locacao;
 public interface ILocacoes {
     /**
      * Adiciona uma locação na relação de locações.
@@ -15,8 +16,6 @@ public interface ILocacoes {
      * @param codigo Codigo do locação a ser capturado.
      * @return Locação com o codigo informado ou null caso o codigo não for encontrado.
      */
-        
-
     public Locacao get(int codigo);
     
     /**

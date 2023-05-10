@@ -2,6 +2,7 @@
  * Interface que permite a manipulação de um conjunto de veículos.
  * @author Aline
  */
+import model.Veiculo;
 public interface IVeiculos {
 
     /**

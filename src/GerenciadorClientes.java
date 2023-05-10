@@ -1,5 +1,8 @@
+
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Cliente;
 /**
  * A classe GerenciadorClientes é responsável por gerenciar uma coleção de clientes.
  */

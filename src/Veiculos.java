@@ -1,5 +1,8 @@
+
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Veiculo;
 
 /**
  * A classe Veiculos representa uma coleção de veículos.

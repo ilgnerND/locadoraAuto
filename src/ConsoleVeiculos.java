@@ -1,4 +1,9 @@
+
 import java.util.Scanner;
+
+import model.Carro;
+import model.Onibus;
+import model.Veiculo;
 /**
  * A classe ConsoleVeiculos é responsável por exibir um menu de opções para interagir com o sistema de cadastro de veículos.
  * Possui métodos para incluir, alterar, capturar e listar veículos.

@@ -2,6 +2,7 @@
  * Interface que permite a manipulação de um conjunto de clientes.
  * @author Aline
  */
+import model.Cliente;
 public interface IClientes {
     
     /**

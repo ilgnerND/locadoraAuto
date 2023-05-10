@@ -1,4 +1,7 @@
+
 import java.util.ArrayList;
+
+import model.Locacao;
 /**
  * A classe Locacoes representa uma coleção de locações.
  */

@@ -1,3 +1,4 @@
+package model;
 
 // Classe Onibus que herda de Veiculo
 public class Onibus extends Veiculo {
