@@ -130,6 +130,12 @@ public class ConsoleLocacoes {
         System.out.println("Locação alterada com sucesso.");
     }
     
+    
+    /**
+     * Captura e exibe os dados de uma locação.
+     *
+     * @param scanner O objeto Scanner utilizado para obter o código da locação.
+     */ 
     public void capturarDadosLocacao(Scanner scanner) {
         System.out.println("Digite o código da locação desejada: ");
         int codigo = scanner.nextInt();
@@ -149,28 +155,7 @@ public class ConsoleLocacoes {
         //System.out.println("Data de fim: " + locacao.getDataFinal());
     }
     
-    /**
-     * Captura e exibe os dados de uma locação.
-     *
-     * @param scanner O objeto Scanner utilizado para obter o código da locação.
-     
-    public void capturarDadosLocacao(Scanner scanner) {
-        System.out.println("Digite o código da locação desejada: ");
-        int codigo = scanner.nextInt();
-        Locacao locacao = locacoes.get;
-        if (locacao == null) {
-            System.out.println("Locação não encontrada.");
-            return;
-        }
-    
-        System.out.println("Dados da locação:" + locacao.toString());
-        //System.out.println("Cliente: " + locacao.getCliente().getNome());
-        //System.out.println("Veículo: " + locacao.getVeiculo().toString());
-        //System.out.println("Data de início: " + locacao.getDataInicial());
-        //System.out.println("Data de fim: " + locacao.getDataFinal());
-    }*/ 
-
-    /**
+ /**
  * Busca a locação com base no código informado.
  *
  * @param codigo O código da locação a ser buscada.
