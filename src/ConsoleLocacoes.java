@@ -41,7 +41,9 @@ public class ConsoleLocacoes {
             }
         }
     }
-
+/**
+     * Exibe o menu do programa.
+     */
     private void exibirMenu() {
         System.out.println("----- Menu -----");
         System.out.println("1 - Incluir locação");
@@ -50,8 +52,15 @@ public class ConsoleLocacoes {
         System.out.println("4 - Sair");
     }
 
+    /**
+     * Realiza a inclusão de uma nova locação.
+     *
+     * @param scanner O objeto Scanner utilizado para obter os dados da locação.
+     */
     private void incluirLocacao(Scanner scanner) {
         System.out.println("===== Cadastrar locação =====");
+
+        // Solicita e lê o CPF do cliente
         System.out.print("Digite o CPF do cliente: ");
         long cpf = scanner.nextLong();
         Cliente cliente = gerenciadorClientes.get(cpf);
@@ -59,6 +68,8 @@ public class ConsoleLocacoes {
             System.out.println("Cliente não encontrado.");
             return;
         }
+
+        // Solicita e lê a placa do veículo
         System.out.print("Digite a placa do veículo: ");
         String placa = scanner.next();
         Veiculo veiculo = veiculos.get(placa);
@@ -66,16 +77,27 @@ public class ConsoleLocacoes {
             System.out.println("Veículo não encontrado.");
             return;
         }
+
+        // Solicita e lê as datas de início e término da locação
         System.out.print("Digite a data de início da locação (yyyy-MM-dd): ");
         LocalDate inicio = LocalDate.parse(scanner.next());
         System.out.print("Digite a data de término da locação (yyyy-MM-dd): ");
         LocalDate termino = LocalDate.parse(scanner.next());
+
+        // Cria um novo objeto Locacao
         Locacao locacao = new Locacao(0, cliente, veiculo, inicio, termino);
+
+        // Adiciona a locação à lista de locações
         locacoes.add(locacao);
+
         System.out.println("Locação cadastrada com sucesso.");
     }
-    
-    
+
+    /**
+     * Realiza a alteração dos dados de uma locação.
+     *
+     * @param scanner O objeto Scanner utilizado para obter os dados da alteração.
+     */
     public void alterarLocacao(Scanner scanner) {
         System.out.println("Digite o código da locação a ser alterada: ");
         int codigo = scanner.nextInt();
@@ -84,16 +106,25 @@ public class ConsoleLocacoes {
             System.out.println("Locação não encontrada.");
             return;
         }
-    
+
+        // Solicita e lê as novas datas de início e término da locação
         System.out.println("Informe a data de início da locação (yyyy-MM-dd):");
         LocalDate dataInicio = LocalDate.parse(scanner.next());
         System.out.println("Informe a data de fim da locação (yyyy-MM-dd):");
         LocalDate dataFim = LocalDate.parse(scanner.next());
+
+        // Atualiza as datas da locação
         locacao.setDataInicial(dataInicio);
         locacao.setDataFinal(dataFim);
+
         System.out.println("Locação alterada com sucesso.");
     }
-    
+
+    /**
+     * Captura e exibe os dados de uma locação.
+     *
+     * @param scanner O objeto Scanner utilizado para obter o código da locação.
+     */ 
     public void capturarDadosLocacao(Scanner scanner) {
         System.out.println("Digite o código da locação desejada: ");
         int codigo = scanner.nextInt();
