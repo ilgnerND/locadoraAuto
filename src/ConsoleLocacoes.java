@@ -65,6 +65,11 @@ public class ConsoleLocacoes {
     private void incluirLocacao(Scanner scanner) {
         System.out.println("===== Cadastrar locação =====");
 
+        // Generate a new locação code
+        int locacaoCode = generateLocacaoCode();
+
+        System.out.println("Código da locação: " + locacaoCode);
+
         // Solicita e lê o CPF do cliente
         System.out.print("Digite o CPF do cliente: ");
         long cpf = scanner.nextLong();
@@ -90,7 +95,7 @@ public class ConsoleLocacoes {
         LocalDate termino = LocalDate.parse(scanner.next());
 
         // Cria um novo objeto Locacao
-        Locacao locacao = new Locacao(0, cliente, veiculo, inicio, termino);
+        Locacao locacao = new Locacao(locacaoCode, cliente, veiculo, inicio, termino);
 
         // Adiciona a locação à lista de locações
         locacoes.add(locacao);
@@ -124,27 +129,79 @@ public class ConsoleLocacoes {
 
         System.out.println("Locação alterada com sucesso.");
     }
-
-    /**
-     * Captura e exibe os dados de uma locação.
-     *
-     * @param scanner O objeto Scanner utilizado para obter o código da locação.
-     */ 
+    
     public void capturarDadosLocacao(Scanner scanner) {
         System.out.println("Digite o código da locação desejada: ");
         int codigo = scanner.nextInt();
-        Locacao locacao = locacoes.get(codigo);
+    
+        // Busca a locação com base no código informado
+        Locacao locacao = buscarLocacaoPorCodigo(codigo);
         if (locacao == null) {
             System.out.println("Locação não encontrada.");
             return;
         }
     
-        System.out.println("Dados da locação:");
-        System.out.println("Cliente: " + locacao.getCliente().getNome());
-        System.out.println("Veículo: " + locacao.getVeiculo().toString());
-        System.out.println("Data de início: " + locacao.getDataInicial());
-        System.out.println("Data de fim: " + locacao.getDataFinal());
+        System.out.println("Dados da locação:" + locacao.toString());
+        //System.out.println("Código: " + locacao.getCodigo());
+        //System.out.println("Cliente: " + locacao.getCliente().getNome());
+        //System.out.println("Veículo: " + locacao.getVeiculo().toString());
+        //System.out.println("Data de início: " + locacao.getDataInicial());
+        //System.out.println("Data de fim: " + locacao.getDataFinal());
     }
+    
+    /**
+     * Captura e exibe os dados de uma locação.
+     *
+     * @param scanner O objeto Scanner utilizado para obter o código da locação.
+     
+    public void capturarDadosLocacao(Scanner scanner) {
+        System.out.println("Digite o código da locação desejada: ");
+        int codigo = scanner.nextInt();
+        Locacao locacao = locacoes.get;
+        if (locacao == null) {
+            System.out.println("Locação não encontrada.");
+            return;
+        }
+    
+        System.out.println("Dados da locação:" + locacao.toString());
+        //System.out.println("Cliente: " + locacao.getCliente().getNome());
+        //System.out.println("Veículo: " + locacao.getVeiculo().toString());
+        //System.out.println("Data de início: " + locacao.getDataInicial());
+        //System.out.println("Data de fim: " + locacao.getDataFinal());
+    }*/ 
+
+    /**
+ * Busca a locação com base no código informado.
+ *
+ * @param codigo O código da locação a ser buscada.
+ * @return A locação encontrada ou null caso não seja encontrada.
+ */
+private Locacao buscarLocacaoPorCodigo(int codigo) {
+    for (Locacao locacao : locacoes) {
+        if (locacao.getCodigo() == codigo) {
+            return locacao;
+        }
+    }
+    return null;
+}
+
+
+    /**
+
+   
+Gera um novo código de locação incrementando o último código utilizado.
+@return O código de locação gerado.
+*/
+private int generateLocacaoCode() {
+    int lastCode = 0;
+    if (!locacoes.isEmpty()) {
+        // Obtém o último código de locação utilizado.
+        Locacao lastLocacao = locacoes.get(locacoes.size() - 1);
+        lastCode = lastLocacao.getCodigo();
+    }
+    // Incrementa o último código para gerar um novo.
+    return lastCode + 1;
+}
 
 }    
            
