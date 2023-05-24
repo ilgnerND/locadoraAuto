@@ -22,6 +22,7 @@ public class ConsoleClientes {
             System.out.println("4 - Voltar menu anterior");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
