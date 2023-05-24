@@ -171,22 +171,20 @@ private Locacao buscarLocacaoPorCodigo(int codigo) {
 }
 
 
-    /**
-
-   
-Gera um novo código de locação incrementando o último código utilizado.
-@return O código de locação gerado.
-*/
-private int generateLocacaoCode() {
-    int lastCode = 0;
-    if (!locacoes.isEmpty()) {
+    /**  
+    * Gera um novo código de locação incrementando o último código utilizado.
+    * @return O código de locação gerado.
+    */
+    private int generateLocacaoCode() {
+        int lastCode = 0;
+        if (!locacoes.isEmpty()) {
         // Obtém o último código de locação utilizado.
         Locacao lastLocacao = locacoes.get(locacoes.size() - 1);
         lastCode = lastLocacao.getCodigo();
+        }
+        // Incrementa o último código para gerar um novo.
+        return lastCode + 1;
     }
-    // Incrementa o último código para gerar um novo.
-    return lastCode + 1;
-}
 
 }    
            
