@@ -1,65 +1,47 @@
 import java.util.ArrayList;
 import java.util.List;
+
+import clienteexcecao.ClienteExistenteException;
+import clienteexcecao.ClienteNaoEncontradoException;
+import clienteexcecao.ColecaoVaziaException;
 /**
  * A classe GerenciadorClientes é responsável por gerenciar uma coleção de clientes.
  */
 public class GerenciadorClientes implements IClientes {
     private List<Cliente> clientes;
 
-    /**
-     * Cria uma instância de GerenciadorClientes.
-     */
     public GerenciadorClientes() {
         this.clientes = new ArrayList<>();
     }
 
-    /**
-     * Adiciona um cliente à coleção de clientes.
-     *
-     * @param c O cliente a ser adicionado.
-     */
     @Override
-    public void add(Cliente c) {
+    public void add(Cliente c) throws ClienteExistenteException {
+        if (existe(c.getCpf())) {
+            throw new ClienteExistenteException("O cliente já existe na coleção.");
+        }
         clientes.add(c);
     }
 
-    /**
-     * Obtém um cliente com base no CPF fornecido.
-     *
-     * @param CPF O CPF do cliente a ser obtido.
-     * @return O cliente com o CPF correspondente, ou null se não for encontrado.
-     */
     @Override
-    public Cliente get(long CPF) {
+    public Cliente get(long CPF) throws ClienteNaoEncontradoException {
         for (Cliente c : clientes) {
             if (c.getCpf() == CPF) {
                 return c;
             }
         }
-        return null;
+        throw new ClienteNaoEncontradoException("Cliente não encontrado na coleção.");
     }
 
-    /**
-     * Obtém as informações de um cliente com base no CPF fornecido.
-     *
-     * @param CPF O CPF do cliente.
-     * @return Uma representação em string das informações do cliente, ou null se o cliente não for encontrado.
-     */
     @Override
-    public String getInfo(long CPF) {
+    public String getInfo(long CPF) throws ClienteNaoEncontradoException {
         Cliente c = get(CPF);
-        return (c == null) ? null : c.toString();
+        return c.toString();
     }
 
-    /**
-     * Obtém as informações de todos os clientes na coleção.
-     *
-     * @return Uma representação em string das informações de todos os clientes na coleção, ou null se a coleção estiver vazia.
-     */
     @Override
-    public String getInfo() {
+    public String getInfo() throws ColecaoVaziaException {
         if (clientes.isEmpty()) {
-            return null;
+            throw new ColecaoVaziaException("A coleção de clientes está vazia.");
         }
         StringBuilder sb = new StringBuilder();
         for (Cliente c : clientes) {
@@ -68,15 +50,10 @@ public class GerenciadorClientes implements IClientes {
         return sb.toString();
     }
 
-    /**
-     * Obtém um resumo das informações de todos os clientes na coleção.
-     *
-     * @return Uma representação em string do resumo das informações de todos os clientes na coleção, ou null se a coleção estiver vazia.
-     */
     @Override
-    public String getResumoInfo() {
+    public String getResumoInfo() throws ColecaoVaziaException {
         if (clientes.isEmpty()) {
-            return null;
+            throw new ColecaoVaziaException("A coleção de clientes está vazia.");
         }
         StringBuilder sb = new StringBuilder();
         for (Cliente c : clientes) {
@@ -85,45 +62,28 @@ public class GerenciadorClientes implements IClientes {
         return sb.toString();
     }
 
-    /**
-     * Substitui um cliente existente com base no CPF fornecido.
-     *
-     * @param CPF O CPF do cliente a ser substituído.
-     * @param c   O cliente a ser inserido.
-     * @return true se o cliente foi substituído com sucesso, false caso contrário.
-     */
     @Override
-    public boolean set(long CPF, Cliente c) {
+    public boolean set(long CPF, Cliente c) throws ClienteNaoEncontradoException {
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getCpf() == CPF) {
                 clientes.set(i, c);
                 return true;
             }
         }
-        return false;
+        throw new ClienteNaoEncontradoException("Cliente não encontrado na coleção.");
     }
-/**
-     * Remove um cliente com base no CPF fornecido.
-     *
-     * @param CPF O CPF do cliente a ser removido.
-     * @return true se o cliente foi removido com sucesso, false caso contrário.
-	*/
+
     @Override
-    public boolean remove(long CPF) {
+    public boolean remove(long CPF) throws ClienteNaoEncontradoException {
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getCpf() == CPF) {
                 clientes.remove(i);
                 return true;
             }
         }
-        return false;
+        throw new ClienteNaoEncontradoException("Cliente não encontrado na coleção.");
     }
-	/**
-	* Verifica se um cliente com o CPF fornecido existe na coleção.
-	*
-	* @param CPF O CPF do cliente a ser verificado.
-	* @return true se o cliente existe na coleção, false caso contrário.
-	*/
+
     @Override
     public boolean existe(long CPF) {
         for (Cliente c : clientes) {

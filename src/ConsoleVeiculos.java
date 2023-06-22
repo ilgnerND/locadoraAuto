@@ -1,4 +1,10 @@
 import java.util.Scanner;
+
+import clienteexcecao.ClienteExistenteException;
+import clienteexcecao.ClienteNaoEncontradoException;
+import veiculosececao.ColecaoVaziaException;
+import veiculosececao.VeiculoExistenteException;
+import veiculosececao.VeiculoNaoEncontradoException;
 /**
  * A classe ConsoleVeiculos é responsável por exibir um menu de opções para interagir com o sistema de cadastro de veículos.
  * Possui métodos para incluir, alterar, capturar e listar veículos.
@@ -8,8 +14,13 @@ public class ConsoleVeiculos {
     private static Scanner scanner = new Scanner(System.in);
 	/**
      * Exibe o menu de opções para o sistema de cadastro de veículos e aguarda a entrada do usuário para realizar as operações.
+	 * @throws VeiculoExistenteException
+	 * @throws VeiculoNaoEncontradoException
+	 * @throws ColecaoVaziaException
+	 * @throws ClienteExistenteException
+	 * @throws ClienteNaoEncontradoException
      */
-    public static  void exibeMenuVeiculos() {
+    public static  void exibeMenuVeiculos() throws VeiculoExistenteException, VeiculoNaoEncontradoException, ColecaoVaziaException, ClienteNaoEncontradoException, ClienteExistenteException {
         int opcao = 0;
 
         do {
@@ -48,8 +59,9 @@ public class ConsoleVeiculos {
      /**
      * Realiza a inclusão de um veículo no sistema, solicitando ao usuário as informações necessárias.
      * Após a inclusão, adiciona o veículo à lista de veículos da locadora.
+     * @throws VeiculoExistenteException
      */
-    private static void incluirVeiculo() {
+    private static void incluirVeiculo() throws VeiculoExistenteException {
         System.out.println("Inclusão de Veículo");
 
         // Solicita informações do veículo ao usuário
@@ -100,8 +112,9 @@ public class ConsoleVeiculos {
  * Realiza a alteração de um veículo no sistema, solicitando ao usuário a placa do veículo a ser alterado
  * e as novas informações do veículo.
  * Verifica se o veículo existe na locadora e, caso exista, realiza a alteração e exibe uma mensagem de sucesso.
+     * @throws VeiculoNaoEncontradoException
  */
-private static void alterarVeiculo() {
+private static void alterarVeiculo() throws VeiculoNaoEncontradoException {
     System.out.println("Alteração de Veículo");
 
     // Solicita a placa do veículo a ser alterado
@@ -158,8 +171,9 @@ private static void alterarVeiculo() {
 
 /**
  * Captura e exibe as informações de um ou mais veículos, informados pelo usuário através de suas placas.
+ * @throws VeiculoNaoEncontradoException
  */
-    private static void capturarVeiculos() {
+    private static void capturarVeiculos() throws VeiculoNaoEncontradoException {
         System.out.println("Captura de Veículos");
     
         System.out.print("Placas (separadas por vírgula): ");
@@ -176,8 +190,9 @@ private static void alterarVeiculo() {
     }
     /**
  * Lista todos os veículos cadastrados na locadora.
+     * @throws ColecaoVaziaException
  */
-    private static void listarVeiculos() {
+    private static void listarVeiculos() throws ColecaoVaziaException {
         System.out.println("Lista de Veículos");
     // Obtém as informações dos veículos da locadora
     String info = locadora.getInfo();
