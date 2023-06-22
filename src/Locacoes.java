@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+
+import locacaoexcecao.ColecaoVaziaException;
+import locacaoexcecao.LocacaoExistenteException;
+import locacaoexcecao.LocacaoNaoEncontradaException;
 /**
  * A classe Locacoes representa uma coleção de locações.
  */
@@ -17,9 +21,16 @@ public class Locacoes implements ILocacoes {
      * Adiciona uma locação à coleção de locações.
      *
      * @param l A locação a ser adicionada.
+     * @throws LocacaoExistenteException
      */
     @Override
-    public void add(Locacao l) {
+    public void add(Locacao l) throws LocacaoExistenteException {
+        if (l == null) {
+        throw new NullPointerException("A locação não pode ser nula.");
+    }
+    if (existe(l.getCodigo())) {
+            throw new LocacaoExistenteException("A locação com o código fornecido já existe na coleção.");
+        }
         listaLocacoes.add(l);
     }
 
@@ -28,15 +39,19 @@ public class Locacoes implements ILocacoes {
      *
      * @param codigo O código da locação a ser obtida.
      * @return A locação com o código correspondente, ou null se não for encontrada.
+     * @throws LocacaoNaoEncontradaException
      */
     @Override
-    public Locacao get(int codigo) {
+    public Locacao get(int codigo) throws LocacaoNaoEncontradaException {
+        if (codigo < 0) {
+        throw new IllegalArgumentException("O código da locação não pode ser negativo.");
+    }
         for (Locacao l : listaLocacoes) {
             if (l.getCodigo() == codigo) {
                 return l;
             }
         }
-        return null;
+        throw new LocacaoNaoEncontradaException("Locação não encontrado na coleção.");
     }
 
     /**
@@ -46,7 +61,7 @@ public class Locacoes implements ILocacoes {
      * @return Uma representação em string das informações da locação, ou null se a locação não for encontrada.
      */
     @Override
-    public String getInfo(int codigo) {
+    public String getInfo(int codigo) throws LocacaoNaoEncontradaException{
         for (Locacao l : listaLocacoes) {
             if (l.getCodigo() == codigo) {
                 return l.toString();
@@ -59,11 +74,13 @@ public class Locacoes implements ILocacoes {
      * Obtém as informações de todas as locações na coleção.
      *
      * @return Uma representação em string das informações de todas as locações na coleção, ou null se a coleção estiver vazia.
+     * @throws ColecaoVaziaException
      */
     @Override
-    public String getInfo() {
+    public String getInfo() throws ColecaoVaziaException {
+        
         if (listaLocacoes.isEmpty()) {
-            return null;
+            throw new ColecaoVaziaException("A locação com o código fornecido não existe na coleção.");
         }
         StringBuilder sb = new StringBuilder();
         for (Locacao l : listaLocacoes) {
@@ -79,9 +96,14 @@ public class Locacoes implements ILocacoes {
      * @param codigo O código da locação a ser substituída.
      * @param l      A locação a ser inserida.
      * @return true se a locação foi substituída com sucesso, false caso contrário.
+     * @throws ColecaoVaziaException
      */
     @Override
-    public boolean set(int codigo, Locacao l) {
+    public boolean set(int codigo, Locacao l) throws ColecaoVaziaException {
+        if (!existe(codigo)) {
+            throw new ColecaoVaziaException("A locação com o código fornecido não existe na coleção.");
+        }
+
         for (int i = 0; i < listaLocacoes.size(); i++) {
             if (listaLocacoes.get(i).getCodigo() == codigo) {
                 listaLocacoes.set(i, l);
@@ -96,16 +118,17 @@ public class Locacoes implements ILocacoes {
      *
      * @param codigo O código da locação a ser removida.
      * @return true se a locação foi removida com sucesso, false caso contrário.
+     * @throws LocacaoNaoEncontradaException
      */
     @Override
-    public boolean remove(int codigo) {
+    public boolean remove(int codigo) throws LocacaoNaoEncontradaException {
         for (Locacao l : listaLocacoes) {
             if (l.getCodigo() == codigo) {
                 listaLocacoes.remove(l);
                 return true;
             }
         }
-        return false;
+        throw new LocacaoNaoEncontradaException("Locação não encontrado na coleção.");
     }
 
 	/**

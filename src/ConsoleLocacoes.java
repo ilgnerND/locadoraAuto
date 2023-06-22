@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import clienteexcecao.ClienteNaoEncontradoException;
+import veiculosececao.VeiculoNaoEncontradoException;
+
 public class ConsoleLocacoes {
     private GerenciadorClientes gerenciadorClientes;
     private IVeiculos veiculos;
@@ -16,7 +19,7 @@ public class ConsoleLocacoes {
         this.locacoes = new ArrayList<>();
     }
 
-    public void exibeMenuLocacoes() {
+    public void exibeMenuLocacoes() throws ClienteNaoEncontradoException, VeiculoNaoEncontradoException {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
         
@@ -56,8 +59,10 @@ public class ConsoleLocacoes {
      * Realiza a inclusão de uma nova locação.
      *
      * @param scanner O objeto Scanner utilizado para obter os dados da locação.
+     * @throws ClienteNaoEncontradoException
+     * @throws VeiculoNaoEncontradoException
      */
-    private void incluirLocacao(Scanner scanner) {
+    private void incluirLocacao(Scanner scanner) throws ClienteNaoEncontradoException, VeiculoNaoEncontradoException {
         System.out.println("===== Cadastrar locação =====");
 
         // Solicita e lê o CPF do cliente

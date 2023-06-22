@@ -1,10 +1,16 @@
 import java.util.Scanner;
 
+import clienteexcecao.ClienteExistenteException;
+import clienteexcecao.ClienteNaoEncontradoException;
+import veiculosececao.ColecaoVaziaException;
+import veiculosececao.VeiculoExistenteException;
+import veiculosececao.VeiculoNaoEncontradoException;
+
 public class ConsoleClientes {
      static Scanner scanner = new Scanner(System.in);
     private static final IClientes gerenciadorClientes = new GerenciadorClientes();
 
-    public static void exibeMenuCliente() {
+    public static void exibeMenuCliente() throws ClienteExistenteException, ClienteNaoEncontradoException, VeiculoNaoEncontradoException, VeiculoExistenteException, ColecaoVaziaException {
         int opcao = 0;
 
         while (opcao != 4) {
@@ -36,8 +42,9 @@ public class ConsoleClientes {
     }
 /**
      * Realiza a inclusão de um novo cliente.
+ * @throws ClienteExistenteException
      */
-    private static void incluirCliente() {
+    private static void incluirCliente() throws ClienteExistenteException {
         System.out.println("\nInclusão de Cliente");
 
         // Solicita e lê os dados do cliente
@@ -71,8 +78,9 @@ public class ConsoleClientes {
 
     /**
      * Realiza a alteração dos dados de um cliente.
+     * @throws ClienteNaoEncontradoException
      */
-    private static void alterarCliente() {
+    private static void alterarCliente() throws ClienteNaoEncontradoException {
         System.out.println("\nAlteração de Cliente");
 
         // Solicita e lê o CPF do cliente
@@ -112,8 +120,9 @@ public class ConsoleClientes {
 
     /**
      * Realiza a consulta de um cliente pelo CPF.
+     * @throws ClienteNaoEncontradoException
      */
-    private static void consultarCliente() {
+    private static void consultarCliente() throws ClienteNaoEncontradoException {
         System.out.println("\nConsulta de Cliente");
 
         // Solicita e lê o CPF do cliente

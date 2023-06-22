@@ -1,10 +1,16 @@
 import java.util.Scanner;
 
+import clienteexcecao.ClienteExistenteException;
+import clienteexcecao.ClienteNaoEncontradoException;
+import veiculosececao.ColecaoVaziaException;
+import veiculosececao.VeiculoExistenteException;
+import veiculosececao.VeiculoNaoEncontradoException;
+
 public class LocadoraVeiculosConsole {
     static ConsoleLocacoes locacoes;
     
 
-    public static void exibirMenuLocadoraVeic() {
+    public static void exibirMenuLocadoraVeic() throws ClienteNaoEncontradoException, VeiculoNaoEncontradoException, ClienteExistenteException, VeiculoExistenteException, ColecaoVaziaException {
         Scanner scan = new Scanner(System.in);
         int opcao = -1;
         while (opcao != 0) {
