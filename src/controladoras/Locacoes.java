@@ -69,7 +69,7 @@ public class Locacoes implements ILocacoes {
                 return l.toString();
             }
         }
-        return null;
+        throw new LocacaoNaoEncontradaException("Locação não encontrado na coleção.");
     }
 
     /**
@@ -99,9 +99,10 @@ public class Locacoes implements ILocacoes {
      * @param l      A locação a ser inserida.
      * @return true se a locação foi substituída com sucesso, false caso contrário.
      * @throws ColecaoVaziaException
+     * @throws LocacaoNaoEncontradaException
      */
     @Override
-    public boolean set(int codigo, Locacao l) throws ColecaoVaziaException {
+    public boolean set(int codigo, Locacao l) throws ColecaoVaziaException, LocacaoNaoEncontradaException {
         if (!existe(codigo)) {
             throw new ColecaoVaziaException("A locação com o código fornecido não existe na coleção.");
         }
@@ -112,7 +113,7 @@ public class Locacoes implements ILocacoes {
                 return true;
             }
         }
-        return false;
+        throw new LocacaoNaoEncontradaException("Locação não encontrado na coleção.");
     }
 
     /**

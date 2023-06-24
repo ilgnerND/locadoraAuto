@@ -1,11 +1,10 @@
 package modelos;
-
 public class Carro extends Veiculo {
     private double mediaKmPorLitro;
-    private boolean arCondicionado;
+    private String arCondicionado;
 
     // Construtor
-    public Carro(String placa, int ano, double valorDiaria, double mediaKmPorLitro, boolean arCondicionado) {
+    public Carro(String placa, int ano, double valorDiaria, double mediaKmPorLitro, String arCondicionado) {
         super(placa, ano, valorDiaria);
         this.mediaKmPorLitro = mediaKmPorLitro;
         this.arCondicionado = arCondicionado;
@@ -19,11 +18,11 @@ public class Carro extends Veiculo {
         this.mediaKmPorLitro = mediaKmPorLitro;
     }
 
-    public boolean isArCondicionado() {
+    public String isArCondicionado() {
         return arCondicionado;
     }
 
-    public void setArCondicionado(boolean arCondicionado) {
+    public void setArCondicionado(String arCondicionado) {
         this.arCondicionado = arCondicionado;
     }
 

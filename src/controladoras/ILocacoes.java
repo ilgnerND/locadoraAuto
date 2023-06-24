@@ -51,8 +51,9 @@ public interface ILocacoes {
      * @return True se a locação com o codigo informado por parâmetro foi modificada ou
      * false caso não exista nenhuma locação com o codigo informado.
      * @throws ColecaoVaziaException
+     * @throws LocacaoNaoEncontradaException
      */
-    public boolean set(int codigo, Locacao l) throws ColecaoVaziaException;
+    public boolean set(int codigo, Locacao l) throws ColecaoVaziaException, LocacaoNaoEncontradaException;
     
     /**
      * Remove a locação com o codigo igual ao informado por parâmetro.

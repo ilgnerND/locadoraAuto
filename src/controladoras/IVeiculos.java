@@ -59,6 +59,8 @@ public interface IVeiculos {
      * false caso não exista nenhum veiculo com a placa informada.
      * @throws VeiculoNaoEncontradoException
      */
+
+     //alterar de boolean para void.
     public boolean set(String placa, Veiculo v) throws VeiculoNaoEncontradoException;
     
     /**

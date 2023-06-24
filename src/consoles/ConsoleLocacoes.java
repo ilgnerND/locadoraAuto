@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import excecoes.clienteexcecao.ClienteNaoEncontradoException;
+import excecoes.locacaoexcecao.LocacaoInvalidaException;
 import controladoras.GerenciadorClientes;
 import controladoras.IVeiculos;
 import modelos.Cliente;
@@ -25,7 +26,7 @@ public class ConsoleLocacoes {
         this.locacoes = new ArrayList<>();
     }
 
-    public void exibeMenuLocacoes() throws ClienteNaoEncontradoException, VeiculoNaoEncontradoException {
+    public void exibeMenuLocacoes()  {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
         
@@ -34,10 +35,20 @@ public class ConsoleLocacoes {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                incluirLocacao(scanner);
+                    try {
+                        incluirLocacao(scanner);
+                    } catch (ClienteNaoEncontradoException | VeiculoNaoEncontradoException e) {
+                        // TODO Auto-generated catch block
+                        System.out.println(e.getMessage());
+                    }
                 break;
             case 2:
-                alterarLocacao(scanner);
+                    try {
+                        alterarLocacao(scanner);
+                    } catch (LocacaoInvalidaException e) {
+                        // TODO Auto-generated catch block
+                        System.out.println(e.getMessage());
+                    }
                 break;
             case 3:
                 capturarDadosLocacao(scanner);
@@ -109,7 +120,7 @@ public class ConsoleLocacoes {
      *
      * @param scanner O objeto Scanner utilizado para obter os dados da alteração.
      */
-    public void alterarLocacao(Scanner scanner) {
+    public void alterarLocacao(Scanner scanner) throws LocacaoInvalidaException{
         System.out.println("Digite o código da locação a ser alterada: ");
         int codigo = scanner.nextInt();
         Locacao locacao = locacoes.get(codigo);

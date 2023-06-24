@@ -3,18 +3,20 @@ import java.util.Scanner;
 
 import excecoes.clienteexcecao.ClienteExistenteException;
 import excecoes.clienteexcecao.ClienteNaoEncontradoException;
-import controladoras.GerenciadorClientes;
+
 import controladoras.IClientes;
 import modelos.Cliente;
-import excecoes.veiculosececao.ColecaoVaziaException;
-import excecoes.veiculosececao.VeiculoExistenteException;
-import excecoes.veiculosececao.VeiculoNaoEncontradoException;
+
 
 public class ConsoleClientes {
      static Scanner scanner = new Scanner(System.in);
-    private static final IClientes gerenciadorClientes = new GerenciadorClientes();
+     static  IClientes gerenciadorClientes;
 
-    public static void exibeMenuCliente() throws ClienteExistenteException, ClienteNaoEncontradoException, VeiculoNaoEncontradoException, VeiculoExistenteException, ColecaoVaziaException {
+     public ConsoleClientes(IClientes gerenciadorClientes){
+        this.gerenciadorClientes = gerenciadorClientes;
+     }
+
+    public  void exibeMenuCliente() {
         int opcao = 0;
 
         while (opcao != 4) {
@@ -28,16 +30,31 @@ public class ConsoleClientes {
 
             switch (opcao) {
                 case 1:
-                    incluirCliente();
+                    try {
+                        incluirCliente();
+                    } catch (ClienteExistenteException e) {
+                        // TODO Auto-generated catch block
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 2:
-                    alterarCliente();
+                    try {
+                        alterarCliente();
+                    } catch (ClienteNaoEncontradoException e) {
+                        // TODO Auto-generated catch block
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 3:
-                    consultarCliente();
+                    try {
+                        consultarCliente();
+                    } catch (ClienteNaoEncontradoException e) {
+                        // TODO Auto-generated catch block
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 4:
-                    LocadoraVeiculosConsole.exibirMenuLocadoraVeic();
+                    
                     break;
                 default:
                     System.out.println("Opção inválida!");
