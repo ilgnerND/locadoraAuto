@@ -1,5 +1,6 @@
 package consoles;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import excecoes.clienteexcecao.ClienteExistenteException;
@@ -107,10 +108,26 @@ public class ConsoleVeiculos {
         String placa = scanner.next();
 
         System.out.print("Ano: ");
-        int ano = scanner.nextInt();
-
+        int ano; 
+        try {
+           ano = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida. Ano deve ser um número inteiro.");
+            scanner.nextLine(); //consome a entrada inválida e retorna ao início da função
+            return;
+            // TODO: handle exception
+        }
+        
         System.out.print("Valor Diária: ");
-        double valorDiaria = scanner.nextDouble();
+        double valorDiaria; 
+        try {
+           valorDiaria = scanner.nextDouble(); 
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida. Valor Diária deve ser um número decimal.");
+            scanner.nextLine(); //consome a entrada inválida e retorna ao início da função
+            return;
+            // TODO: handle exception
+        }
 
         System.out.println("Tipo do Veículo");
         System.out.println("1 - Carro");
